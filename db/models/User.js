@@ -23,6 +23,15 @@ module.exports = (sequelize) => {
         }
       },
     },
+    lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+          msg: 'Please provide a last name',
+          }
+        },
+      },
     emailAddress: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -45,6 +54,16 @@ module.exports = (sequelize) => {
     // paranoid: true, // enable "soft" deletes
     sequelize
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.Course, {
+      as: 'creator',
+      foreignKey: {
+        fieldName: 'creatorUserId',
+        allowNull: false,
+      },
+    });
+  };
 
   return User;
 };

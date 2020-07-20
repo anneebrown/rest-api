@@ -9,6 +9,8 @@ module.exports = (sequelize) => {
       autoIncrement: true,
     },
     userID: {
+      type: Sequelize.INTEGER,
+      allowNull: false
     },
     title: {
       type: Sequelize.STRING,
@@ -28,15 +30,28 @@ module.exports = (sequelize) => {
         }
       },
     },
-    isAvailableOnVHS: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+    estimatedTime: {
+      type: Sequelize.STRING,
+      allowNull: true,
     },
+    materialsNeeded: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      }
   }, {
     // paranoid: true, // enable "soft" deletes
     sequelize
   });
+
+//   Course.associate = (models) => {
+//     Course.belongsTo(models.User, {
+//       as: 'creator',
+//       foreignKey: {
+//         fieldName: 'creatorUserId',
+//         allowNull: false,
+//       },
+//     });
+//   };
 
   return Course;
 };
