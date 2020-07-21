@@ -1,3 +1,5 @@
+'use strict';
+
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize) => {
@@ -8,10 +10,10 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    userID: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
+    // userID: {
+    //   type: Sequelize.INTEGER,
+    //   allowNull: false
+    // },
     title: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -43,15 +45,15 @@ module.exports = (sequelize) => {
     sequelize
   });
 
-//   Course.associate = (models) => {
-//     Course.belongsTo(models.User, {
-//       as: 'creator',
-//       foreignKey: {
-//         fieldName: 'creatorUserId',
-//         allowNull: false,
-//       },
-//     });
-//   };
+  Course.associate = (models) => {
+    Course.belongsTo(models.User, {
+      as: 'creator',
+      foreignKey: {
+        fieldName: 'userId',
+        allowNull: false,
+      },
+    });
+  };
 
   return Course;
 };

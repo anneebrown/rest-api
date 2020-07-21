@@ -3,7 +3,7 @@
 // lastName (String)
 // emailAddress (String)
 // password (String)
-
+'use strict';
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize) => {
@@ -59,7 +59,7 @@ module.exports = (sequelize) => {
     User.hasMany(models.Course, {
       as: 'creator',
       foreignKey: {
-        fieldName: 'creatorUserId',
+        fieldName: 'userId',
         allowNull: false,
       },
     });
